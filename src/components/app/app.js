@@ -15,13 +15,11 @@ const AppBlock = styled.div`
     max-width: 800px;
 `
 export default class App extends Component {
-
-    maxId = 4;
     state = {
         data: [
-            { label: 'Going to learn React', important: true, id: 'www', liked:false},
-            { label: 'That is so good', important: false, id: 'qqq', liked:false },
-            { label: 'I need a break...', important: false, id: 'eee', liked:false }
+            { label: 'Going to learn React', important: true, id: nextId(), liked:false},
+            { label: 'That is so good', important: false, id: nextId(), liked:false },
+            { label: 'I need a break...', important: false, id: nextId(), liked:false }
         ]
     };
 
