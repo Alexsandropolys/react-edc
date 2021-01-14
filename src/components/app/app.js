@@ -25,6 +25,7 @@ export default class App extends Component {
         ]
     };
 
+    
     onToggleLike = id => {
         this.setState(({data})=>{
             const index = data.findIndex(elem => elem.id === id);
@@ -66,9 +67,19 @@ export default class App extends Component {
     }
      
     render = () => {
+        const totalPosts = this.state.data.length;
+        let likedPosts = 0;
+        this.state.data.forEach(post => {
+            if (post.liked){
+                likedPosts++;
+            }
+        });
         return (
             <AppBlock>
-                <AppHeader />
+                <AppHeader
+                totalPosts={totalPosts}
+                likedPosts={likedPosts}
+                 />
                 <div className="search-panel d-flex">
                     <SearchPanel />
                     <PostStatusFilter />
