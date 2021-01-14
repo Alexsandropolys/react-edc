@@ -29,7 +29,7 @@
     color: red;
     transition: 0.3s all;
     transform: translateX(30px);
-    opacity:0.3;
+    opacity:0;
 }
 
 .app-list-item-label {
