@@ -28,14 +28,8 @@ export default class App extends Component {
     
     onToggleLike = id => {
         this.setState(({data})=>{
-            const index = data.findIndex(elem => elem.id === id);
-            const newOne = {...data[index], liked: !data[index].liked};
-            const before = data.slice(0, index);
-            const after = data.slice(index+1);
-            const newState = [...before, newOne, ...after];
-            return ({data: newState});
+            return ({data: this.toggleHelp([...data], id, 'like')});
         });
-        console.log(this.state);
     }
     search = (items, term) => {
         if (term.length === 0){
@@ -45,14 +39,23 @@ export default class App extends Component {
             return item.label.indexOf(term) > -1;
         })
     }
-    onToggleImportant = id => {
-        this.setState(({data}) => {
+    toggleHelp = (data, id, type) => {
             const index = data.findIndex(elem => elem.id === id);
-            const newOne = {...data[index], important: !data[index].important};
+            let newOne = {};
+            if (type === 'like'){
+                newOne = {...data[index], liked: !data[index].liked};
+            }else{
+                newOne = {...data[index], important: !data[index].important};
+            }
+            
             const before = data.slice(0, index);
             const after = data.slice(index+1);
             const newState = [...before, newOne, ...after];
-            return ({data: newState});
+            return newState;
+    }
+    onToggleImportant = id => {
+        this.setState(({data}) => {
+            return ({data: this.toggleHelp([...data], id, 'important')});
         });
     }
     dleteItem = id => {
